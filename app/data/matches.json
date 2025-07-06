@@ -1,0 +1,14 @@
+[
+  {
+    "id": 101,
+    "home_team": "Arsenal",
+    "away_team": "Liverpool",
+    "kickoff": "2025-07-05T16:30:00Z"
+  },
+  {
+    "id": 102,
+    "home_team": "FC Barcelona",
+    "away_team": "Real Madrid",
+    "kickoff": "2025-07-05T20:00:00Z"
+  }
+]

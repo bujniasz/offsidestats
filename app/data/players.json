@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Erling Haaland",
+    "team": "Manchester City",
+    "goals": 36
+  },
+  {
+    "id": 2,
+    "name": "Harry Kane",
+    "team": "Bayern Munich",
+    "goals": 34
+  },
+  {
+    "id": 3,
+    "name": "Robert Lewandowski",
+    "team": "FC Barcelona",
+    "goals": 30
+  }
+]
