@@ -11,3 +11,26 @@ services:
     volumes:
       - ../app:/offsidestats/app
     command: uvicorn app.main:application --host 0.0.0.0 --port 8000 --reload
+    depends_on: #db is started first
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: offside_db
+      DB_USER: offside_user
+      DB_PASSWORD: offside_pass
+  db:
+    image: postgres:16
+    container_name: offsidestats-db
+    restart: always
+    environment:
+      POSTGRES_USER: offside_user
+      POSTGRES_PASSWORD: offside_pass
+      POSTGRES_DB: offside_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
