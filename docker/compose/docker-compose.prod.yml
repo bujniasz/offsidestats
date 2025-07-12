@@ -19,7 +19,7 @@ services:
       DB_PASSWORD: offside_pass
   db:
     image: postgres:16
-    container_name: offsidestats-db
+    container_name: offsidestats-db-prod
     restart: always
     environment:
       POSTGRES_USER: offside_user
@@ -30,3 +30,5 @@ services:
 
 volumes:
   db_data:
+    external: true #will fail if not found - won't create new/overwrite existing
+    name: offsidestats_db_data

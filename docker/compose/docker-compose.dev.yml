@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ../app:/offsidestats/app
+      - ../../app:/offsidestats/app
     command: uvicorn app.main:application --host 0.0.0.0 --port 8000 --reload
     depends_on: #db is started first
       - db
@@ -21,7 +21,7 @@ services:
       DB_PASSWORD: offside_pass
   db:
     image: postgres:16
-    container_name: offsidestats-db
+    container_name: offsidestats-db-dev
     restart: always
     environment:
       POSTGRES_USER: offside_user
@@ -29,6 +29,7 @@ services:
       POSTGRES_DB: offside_db
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ../init:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
 

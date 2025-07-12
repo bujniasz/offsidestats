@@ -1,25 +1,31 @@
 # === DEVELOPMENT ===
 dev:
-	docker compose -f compose/docker-compose.dev.yml up
+	docker compose -p offsidestats -f docker/compose/docker-compose.dev.yml up
 
 dev-build:
-	docker compose -f compose/docker-compose.dev.yml up --build
+	docker compose -p offsidestats -f docker/compose/docker-compose.dev.yml up --build
 
 dev-shell:
-	docker compose -f compose/docker-compose.dev.yml run --rm --service-ports app bash
+	docker compose -p offsidestats -f docker/compose/docker-compose.dev.yml run --rm --service-ports app bash
 
 dev-stop:
-	docker compose -f compose/docker-compose.dev.yml down
+	docker compose -p offsidestats -f docker/compose/docker-compose.dev.yml down
+
+dev-db-shell: #use after make dev
+	docker exec -it offsidestats-db-dev psql -U offside_user -d offside_db
 
 # === PRODUCTION ===
 prod:
-	docker compose -f compose/docker-compose.prod.yml up -d
+	docker compose -p offsidestats -f docker/compose/docker-compose.prod.yml up -d
 
 prod-build:
-	docker compose -f compose/docker-compose.prod.yml up --build -d
+	docker compose -p offsidestats -f docker/compose/docker-compose.prod.yml up --build -d
 
 prod-stop:
-	docker compose -f compose/docker-compose.prod.yml down
+	docker compose -p offsidestats -f docker/compose/docker-compose.prod.yml down
+
+prod-db-shell: #use after make prod
+	docker exec -it offsidestats-db-prod psql -U offside_user -d offside_db
 
 # === CLEANUP ===
 clean:
